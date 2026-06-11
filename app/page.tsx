@@ -8,6 +8,9 @@ import {
   Hamburger,
   History,
   Target,
+  Scroll,
+  Flame,
+  BookOpen,
   Broccoli, 
   Apple, 
   Wheat, 
@@ -191,7 +194,7 @@ export default function Home() {
                 {/* LOG */}
                 <div className="fusion-card">
                   <h2 className="fusion-card-title">
-                    📋 Food Log
+                    <Scroll/> Food Log
                     <span style={{
                       fontSize: 10, fontWeight: 600, background: '#F0F0F6',
                       color: 'var(--text-muted)', padding: '2px 8px', borderRadius: 20, marginLeft: 'auto',
@@ -212,7 +215,7 @@ export default function Home() {
 
               {/* Exchange Reference */}
               <div className="fusion-card">
-                <h3 className="fusion-card-title">📖 Exchange Reference</h3>
+                <h3 className="fusion-card-title"><BookOpen/> Exchange Reference</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   {EXCHANGE_REF.map((item) => (
                     <div key={item.label} className="fusion-exch-row">
@@ -241,7 +244,7 @@ export default function Home() {
           borderTop: '1px solid var(--border)',
           fontSize: 12, color: 'var(--text-muted)',
         }}>
-          🌿 Nutri Retreat · Filipino Food Exchange Lists · Atwater general factors (C×4, P×4, F×9)
+           Nutri Retreat · Filipino Food Exchange Lists · Atwater general factors (C×4, P×4, F×9)
         </footer>
       </div>
     </div>
@@ -263,7 +266,7 @@ function AtwaterPanel({ totals }: { totals: { carbs: number; protein: number; fa
 
   return (
     <div className="fusion-card">
-      <h3 className="fusion-card-title">🔥 Energy Breakdown</h3>
+      <h3 className="fusion-card-title"><Flame/> Energy Breakdown</h3>
       {rows.map((r) => (
         <div key={r.label} style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
