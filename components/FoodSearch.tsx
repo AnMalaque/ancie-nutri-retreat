@@ -1,5 +1,8 @@
 'use client'
 import {
+  Search,
+  Leaf,
+  Bubbles,
   Wheat,
   Beef,
   Broccoli,
@@ -156,7 +159,7 @@ export default function FoodSearch({ onAddFood }: FoodSearchProps) {
         <span style={{
           position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
           color: 'var(--text-muted)', fontSize: 14, pointerEvents: 'none',
-        }}>🔍</span>
+        }}><Search /></span>
         <input
           type="text"
           className="fusion-input"
@@ -171,11 +174,11 @@ export default function FoodSearch({ onAddFood }: FoodSearchProps) {
       <div className="fusion-food-list">
         {loading ? (
           <div style={{ padding: 20, textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>
-            Loading foods… 🌱
+            Loading foods… <Bubbles />
           </div>
         ) : foods.length === 0 ? (
           <div style={{ padding: 20, textAlign: 'center', color: 'var(--text-muted)', fontSize: 13 }}>
-            No foods found. Try a different search! 🍂
+            No foods found. Try a different search! <Leaf />
           </div>
         ) : (
           foods.map((food) => {
