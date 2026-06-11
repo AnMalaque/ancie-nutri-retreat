@@ -33,6 +33,10 @@
   --sidebar-w: 72px;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   background: linear-gradient(
     135deg,
@@ -49,6 +53,74 @@ body {
     radial-gradient(circle at 15% 85%, rgba(255,240,245,.45), transparent 40%);
 
   background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ── ANIMATED 3D CUBE FIELD ── */
+.cube-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  perspective: 1200px;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+}
+
+.cube-field .cube {
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: cube-float 22s ease-in-out infinite, cube-spin 30s linear infinite;
+}
+
+.cube-field .face {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+}
+
+/* Six faces of the cube — size set per-cube via --s custom property */
+.cube-field .face.front  { transform: translateZ(calc(var(--s) / 2)); background: rgba(255, 182, 193, 0.35); }
+.cube-field .face.back   { transform: translateZ(calc(var(--s) / -2)) rotateY(180deg); background: rgba(255, 192, 203, 0.30); }
+.cube-field .face.right  { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); background: rgba(255, 218, 224, 0.32); }
+.cube-field .face.left   { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); background: rgba(244, 114, 182, 0.18); }
+.cube-field .face.top    { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); background: rgba(255, 240, 245, 0.45); }
+.cube-field .face.bottom { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); background: rgba(255, 200, 210, 0.22); }
+
+@keyframes cube-float {
+  0%   { transform: translate3d(0, 0, 0); }
+  25%  { transform: translate3d(18px, -28px, 10px); }
+  50%  { transform: translate3d(-12px, -10px, -10px); }
+  75%  { transform: translate3d(-22px, 22px, 6px); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes cube-spin {
+  from { rotate: x 0deg y 0deg z 0deg; }
+  to   { rotate: x 360deg y 360deg z 360deg; }
+}
+
+/* Stagger each cube's animation timing & rotation start so they don't move in sync */
+.cube-field .cube:nth-child(1)  { animation-delay: 0s, -4s; }
+.cube-field .cube:nth-child(2)  { animation-delay: -3s, -10s; }
+.cube-field .cube:nth-child(3)  { animation-delay: -7s, -2s; }
+.cube-field .cube:nth-child(4)  { animation-delay: -11s, -16s; }
+.cube-field .cube:nth-child(5)  { animation-delay: -1s, -22s; }
+.cube-field .cube:nth-child(6)  { animation-delay: -9s, -7s; }
+.cube-field .cube:nth-child(7)  { animation-delay: -14s, -13s; }
+.cube-field .cube:nth-child(8)  { animation-delay: -5s, -19s; }
+.cube-field .cube:nth-child(9)  { animation-delay: -17s, -1s; }
+.cube-field .cube:nth-child(10) { animation-delay: -2s, -25s; }
+.cube-field .cube:nth-child(11) { animation-delay: -19s, -5s; }
+.cube-field .cube:nth-child(12) { animation-delay: -8s, -17s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cube-field .cube { animation: none; }
 }
 
 /* Custom Minimalist Scrollbar */
@@ -61,6 +133,8 @@ body {
 .fusion-layout {
   display: flex;
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .fusion-logo {
