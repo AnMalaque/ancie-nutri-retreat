@@ -154,6 +154,12 @@ export default function Home() {
                 </button>
               )}
             </div>
+
+            {/* Decorative plant emoji */}
+            <span style={{
+              position: 'absolute', right: 28, top: '50%', transform: 'translateY(-50%)',
+              fontSize: 64, zIndex: 1, opacity: 0.7, lineHeight: 1, userSelect: 'none',
+            }}>🌿</span>
           </div>
 
           {/* ── MACRO ROW + RIGHT PANEL (2-col grid) ── */}
